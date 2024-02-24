@@ -1,2 +1,2 @@
 # Neural_Network_Apple_Stock_Pred
-Predicting Apple stock price utilizing LSTM, GRU, and an Ensemble Learning method
+Predicting Apple stock closing price trends from historical data with GRU and LSTM models from tensorflow and keras 
