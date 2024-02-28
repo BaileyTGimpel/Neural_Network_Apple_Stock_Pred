@@ -18,14 +18,20 @@ df['mv_avg_long'] = df['close'].rolling(window=50).mean()
 ## Feature Description: 
 X (Independent Variables):
 
-open: The price at which a stock first trades upon the opening of an exchange on a given trading day.
-high: The highest price at which a stock trades during a specific period.
-low: The lowest price of the stock during the same period.
-volume: The number of shares or contracts traded in a security or an entire market during a given period.
-mv_avg_short (Moving Average Short Term): This is a commonly used indicator in technical analysis that helps smooth out price action by filtering out the “noise” from random price fluctuations. It's a short-term moving average, possibly over days or weeks.
+open: The price at which a stock first trades upon the opening of an exchange on a given trading day. 
+
+high: The highest price at which a stock trades during a specific period. 
+
+low: The lowest price of the stock during the same period. 
+
+volume: The number of shares or contracts traded in a security or an entire market during a given period. 
+
+mv_avg_short (Moving Average Short Term): This is a commonly used indicator in technical analysis that helps smooth out price action by filtering out the “noise” from random price fluctuations. It's a short-term moving average, possibly over days or weeks. 
+
 mv_avg_long (Moving Average Long Term): Similar to the short-term moving average but calculated over a longer period. This could be over several weeks or months, providing insights into the longer-term trend of the stock price. 
 
-Y (Dependent Variable):
+Y (Dependent Variable): 
+
 close: The final price at which a stock trades during a regular trading session. This is the target variable that the GRU model aims to predict. 
 
 ## Scaling and Cleaning  
