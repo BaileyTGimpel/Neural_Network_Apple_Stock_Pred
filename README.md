@@ -4,11 +4,11 @@ Predicting Apple stock closing price trends from historical data with GRU and LS
 ## The Data  
 Historical Apple Stock Data: https: //www.kaggle.com/datasets/camnugent/sandp500    
 
-# Feature Engineering     
+# Feature Engineering:     
 The data set AAPL_data.csv contains the columns: [date, open, high, low, close, volume, and name] the name column was dropped from the dataframe and the date column was converted to datetime and set as the index.  
 
 
-## Creating Moving Averages 
+## Creating Moving Averages: 
 In order to create features that will aid in the models predictions the 5 day and 50 day moving averages were calculated and stored in columns of the dataframe.  
 
 ```
@@ -34,7 +34,7 @@ Y (Dependent Variable):
 
 close: The final price at which a stock trades during a regular trading session. This is the target variable that the GRU model aims to predict. 
 
-## Scaling and Cleaning  
+## Scaling and Cleaning:  
 In order to use volume as a feature in our models the values for all of our features must be scaled between 0 and 1 due to how large the values for volume are. Aditionally the first 50 days of data is removed due to the fact that we do not have 50 moving averages for those days. 
 
 ```
@@ -46,7 +46,7 @@ df_scaled = df_scaled.iloc[50:,:]
 ```
 # Data Preprocessing  
 
-## Formatting Data for GRU Model and LSTM Model 
+## Formatting Data for GRU Model and LSTM Model: 
 The data is restructured into sequences to fit the GRU model's requirements, which is designed to process data in sequences or time steps. Here, each sequence (or sample) consists of 60 consecutive time steps, with each time step comprising the selected features (open, high, low, volume, mv_avg_short, and mv_avg_long). The sequences in X are used to predict the value of Y, the closing price, at the subsequent time step. By training the GRU model on this structured data, it learns to understand the temporal dynamics and the relationship between the various features over time to make accurate predictions about the closing price. 
 
 ```
@@ -109,17 +109,17 @@ history = model.fit(trainX,
                     validation_split=0.2,
                     verbose=1)
 ```
-## Model Architecture:
+## Model Architecture (GRU):
 
 The model is initialized using a sequential stack, allowing us to linearly stack layers. The first GRU layer has 50 units and uses 'tanh' activation. It's set to return sequences, meaning the output for each timestep is returned, allowing the next GRU layer to receive sequences of data for temporal processing. A dropout layer follows the first GRU layer, with a dropout rate of 20%, to reduce overfitting by randomly omitting a portion of the features during training.
 Subsequent GRU layers follow a similar structure, with each having 50 units and 'tanh' activation. The final GRU layer does not return sequences since it feeds into the dense output layer. The output layer is a dense layer with a single unit to predict the closing price. 
 
-## Compilation and Training:
+## Compilation and Training (GRU):
 
 The model uses the SGD (Stochastic Gradient Descent) optimizer with a learning rate of 0.01 and a momentum of 0.9. We do not use Nesterov accelerated gradient in this case. The loss function is mean squared error, suitable for regression tasks like predicting stock prices. The model is trained with the historical stock price data, where we do not shuffle the batches (important for time-series data to maintain the temporal sequence of observations).
 We train the model for 100 epochs with a batch size of 32 and use a validation split of 20% to monitor the model's performance on unseen data during training. 
 
-## Model Training Output:
+## Model Training Output (GRU):
 
 During training, the model's performance is monitored using the loss and mean squared error metrics on both training and validation sets. These metrics help in evaluating how well the model is learning and generalizing over time.
 This GRU model is specifically tailored to leverage the sequential nature of time-series data in stock price prediction, capturing the temporal dependencies and trends present in the historical data to forecast future stock prices effectively. 
@@ -163,15 +163,15 @@ lstm_trained = regressor.fit(trainX,
                               validation_split=0.2,
                               verbose=1)
 ```
-## Model Architecture:
+## Model Architecture (LSTM):
 
 The model begins with a sequential layout, facilitating the linear stacking of LSTM and dropout layers. The first LSTM layer has 50 units and is set to return sequences, allowing the subsequent LSTM layer to receive full sequences of data. This is critical for maintaining temporal information throughout the model. Following the first LSTM layer, a dropout layer with a rate of 20% is applied to minimize overfitting by neglecting a fraction of the neurons' connections randomly. This pattern continues for three more LSTM layers, each followed by a dropout layer with the same dropout rate to consistently mitigate overfitting across the network. After the LSTM layers, a dense layer with one unit serves as the output layer, providing the predicted closing price. 
 
-## Compilation and Training:
+## Compilation and Training (LSTM):
 
 The model uses the Adam optimizer, a popular choice for deep learning models due to its adaptive learning rate capabilities. The loss function is mean squared error, aligning with the regression nature of our prediction task. Training involves feeding the model with batches of historical data without shuffling, preserving the chronological order essential for time-series analysis. The model is trained over 50 epochs with a batch size of 32. During training, 20% of the data is used for validation to monitor the model's performance on unseen data. 
 
-## Model Training Output:
+## Model Training Output (LSTM):
 
 The training process logs the loss values, offering insights into how well the model is learning to predict the stock prices. The validation loss provides a gauge for the model's generalization ability.  
 
