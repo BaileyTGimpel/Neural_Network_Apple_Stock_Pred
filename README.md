@@ -179,7 +179,7 @@ The training process logs the loss values, offering insights into how well the m
 ## Apple Stock Closing Prices: 
 This chart depicts the historical closing prices of Apple stock with a clear distinction between the training set and the testing set. The training set appears to have a stable rising trend, while the testing set shows increased volatility and a steeper upward trend. If the models were trained on the period with lower volatility, they might not have learned to predict the sharper increases accurately.  
 
-![alt text](images/Apple_Historical_Close.png)
+![alt text](images/Apple_Stock_Historical_Close.png)
 
 
 # Training and Validation Loss (GRU Model): 
