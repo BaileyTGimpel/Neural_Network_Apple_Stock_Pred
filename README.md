@@ -183,16 +183,24 @@ This chart depicts the historical closing prices of Apple stock with a clear dis
 
 
 # Training and Validation Loss (GRU Model): 
-The loss curves for the GRU model show that the training loss decreases rapidly and then plateaus, which is typical and indicates good convergence. The validation loss is very close to the training loss, which usually suggests that the model is not overfitting. However, if the validation loss does not include the periods of higher volatility (as seen in the stock prices chart), the model might not generalize well to the more volatile testing set.
+The loss curves for the GRU model show that the training loss decreases rapidly and then plateaus, which is typical and indicates good convergence. The validation loss is very close to the training loss, which usually suggests that the model is not overfitting. However, if the validation loss does not include the periods of higher volatility (as seen in the stock prices chart), the model might not generalize well to the more volatile testing set. 
+
+![alt text](images/GRU_Loss_Graph.png)
 
 # GRU Predicted vs. True Value:  
-In the visualization comparing the true stock closing prices with the GRU predicted values over the last 120 days, the GRU model seems to be catching the trend but not the magnitude of changes. This underestimation could be due to the model not being complex enough to capture the full extent of the variability in the stock prices or due to the lack of relevant features that drive the prices higher.
+In the visualization comparing the true stock closing prices with the GRU predicted values over the last 120 days, the GRU model seems to be catching the trend but not the magnitude of changes. This underestimation could be due to the model not being complex enough to capture the full extent of the variability in the stock prices or due to the lack of relevant features that drive the prices higher. 
+
+![alt text](images/GRU_Pred_Graph.png)
 
 # Training and Validation Loss (LSTM Model):  
-The LSTM model's loss curves show a different pattern. The training and validation loss have more variance, and the validation loss is consistently higher than the training loss. This could indicate that the LSTM model is not learning as effectively as the GRU model or that it may be overfitting to the training data and thus not generalizing well to the validation set.
+The LSTM model's loss curves show a different pattern. The training and validation loss have more variance, and the validation loss is consistently higher than the training loss. This could indicate that the LSTM model is not learning as effectively as the GRU model or that it may be overfitting to the training data and thus not generalizing well to the validation set. 
+
+![alt text](images/LSTM_Loss_Graph.png)
 
 # LSTM Predicted vs. True Value:  
 The LSTM model's predictions also show a trend similar to the actual values but significantly underpredicts them. This underperformance could be due to overfitting, as suggested by the loss curves, where the model learns the noise in the training data rather than the underlying trend.
+
+![alt_text](images/LSTM_Pred_Graph.png) 
 
 # Conclusions from Visualizations:
 
